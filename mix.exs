@@ -9,7 +9,19 @@ defmodule Tus.Cache.Redis.MixProject do
       version: @version,
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: "Redis cache backend for the Tus server (https://hex.pm/packages/tus)",
+      deps: deps(),
+      package: package(),
+      dialyzer: [ignore_warnings: "dialyzer.ignore-warnings"]
+    ]
+  end
+
+  def package() do
+    [
+      files: ~w(lib mix.exs README.md LICENSE VERSION),
+      licenses: ["BSD 3-Clause License"],
+      maintainers: ["Juan-Pablo Scaletti", "juanpablo@jpscaletti.com"],
+      links: %{github: "https://github.com/jpscaletti/tus-cache-redis"}
     ]
   end
 

@@ -1,8 +1,8 @@
 # Tus.Cache.Redis
 
-A plugin for the Tus https://hex.pm/packages/tus server.
-Provides a cache backend based on Redis.
+Redis cache backend for the [Tus server](https://hex.pm/packages/tus)
 
+Uses the [Redix](https://hex.pm/packages/redix) package for interfacing with Redis.
 
 ## Installation
 
@@ -19,11 +19,6 @@ end
 
 ## Configuration
 
-- `cache`:
-	Set it as `Tus.Cache.Redis`.
-
-- `redis_host`:
-	Optional.
-
-- `redis_port`:
-	Optional. 
+- `cache`: Set it as `Tus.Cache.Redis`.
+- `redis_host`: Optional. "localhost" by default
+- `redis_port`: Optional. 6379 by default.

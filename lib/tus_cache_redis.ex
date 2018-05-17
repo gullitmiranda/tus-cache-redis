@@ -1,7 +1,6 @@
 defmodule Tus.Cache.Redis do
   @moduledoc """
-  A plugin for the [Tus server](https://hex.pm/packages/tus).
-  Provides a cache backend based on Redis.
+  Redis cache backend for the [Tus server](https://hex.pm/packages/tus)
 
   Uses the [Redix](https://hex.pm/packages/redix) package for interfacing with Redis.
 
