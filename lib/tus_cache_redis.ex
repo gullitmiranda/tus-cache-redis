@@ -1,4 +1,38 @@
 defmodule Tus.Cache.Redis do
+  @moduledoc """
+  A plugin for the [Tus server](https://hex.pm/packages/tus).
+  Provides a cache backend based on Redis.
+
+  Uses the [Redix](https://hex.pm/packages/redix) package for interfacing with Redis.
+
+  ## Installation
+
+  The package can be installed by adding `tus_cache_redis` to your list of dependencies in `mix.exs`:
+
+  ```elixir
+  def deps do
+    [
+      {:tus, "~> 0.1.0"},
+      {:tus_cache_redis, "~> 0.1.0"},
+    ]
+  end
+  ```
+
+  ## Configuration
+
+  - `cache`: Set it as `Tus.Cache.Redis`.
+  - `redis_host`: Optional. "localhost" by default
+  - `redis_port`: Optional. 6379 by default.
+
+  """
+  @doc """
+  Start the Redix GenServer.
+
+  Params:
+  - `:redis_host`: "localhost"
+  - `:redis_port`: 6379
+  - `:cache_name`: The name of the server
+  """
   def start_link(%{cache_name: cache_name} = config) do
     Redix.start_link(
       [
@@ -9,6 +43,9 @@ defmodule Tus.Cache.Redis do
     )
   end
 
+  @doc """
+  Read a value from Redis. Returns `nil` is none is found.
+  """
   def get(name, key) do
     case Redix.command(name, ["GET", key]) do
       {:ok, nil} -> nil
@@ -17,10 +54,17 @@ defmodule Tus.Cache.Redis do
     end
   end
 
+  @doc """
+  Puts a value to Redis. Overwrites any value with the same key.
+  """
   def put(name, key, file) do
     {:ok, _} = Redix.command(name, ["SET", key, encode(file)])
   end
 
+  @doc """
+  Delete a value from Redis. Doesn't fail if the key doesn't exist, so it can be
+  called multiple times.
+  """
   def delete(name, key) do
     _ = Redix.command(name, ["DEL", key])
   end

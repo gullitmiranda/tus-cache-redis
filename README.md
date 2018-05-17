@@ -1,7 +1,8 @@
 # Tus.Cache.Redis
 
-A	plugin for the Tus (https://github.com/jpscaletti/tus) package.
-Provides a cache backend based on Redis
+A plugin for the Tus https://hex.pm/packages/tus server.
+Provides a cache backend based on Redis.
+
 
 ## Installation
 
@@ -16,7 +17,7 @@ def deps do
 end
 ```
 
-# Configuration
+## Configuration
 
 - `cache`:
 	Set it as `Tus.Cache.Redis`.
