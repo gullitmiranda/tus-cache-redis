@@ -36,7 +36,7 @@ defmodule Tus.Cache.Redis.MixProject do
   defp deps do
     [
       {:tus, ">= 0.1.0"},
-      {:redix, ">= 0.0.0"},
+      {:redix, ">= 0.9.0"},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
